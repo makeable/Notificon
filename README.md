@@ -4,6 +4,9 @@ Instead of requiring a number of favicons be created and served up to the client
 
 [Example is available here](http://makeable.github.com/Notificon/)
 
+## Browser Support
+Due to browser limitations, Favicons can only be changed post-render in Chrome 6+ and Firefox 2+. Other browsers are currently unsupported.
+
 ## Basic Usage
 1) Include the notificon.js in your page
 2) Call Notificon(12) to overlay the number 12 on your favicon.
