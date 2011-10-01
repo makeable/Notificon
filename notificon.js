@@ -1,4 +1,20 @@
 (function(){
+	
+	var unsupported = false;
+	
+	var checkSupport = function checkSupport() {
+		if (unsupported) {
+			return false;
+		}
+		if (!document.createElement('canvas').getContext) {
+			unsupported = true;
+			if (console) {
+				console.log('Notificon: requires canvas support');
+			}
+			return false;
+		}
+		return true;
+	}
   
   var findFaviconTag = function findFaviconTag(notificon) {
     var link_tags = document.getElementsByTagName('link');
@@ -53,8 +69,11 @@
     context.drawImage(img, 0, 0);
     return canvas;
   };
-  
+	
   var createNotificon = function createNotificon(label, favicon) {
+			if (!checkSupport()) {
+				return false;
+			}
       if (!favicon) {
         favicon = getExistingFavicon();
       }
