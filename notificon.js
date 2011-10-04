@@ -127,7 +127,7 @@ or implied, of Matt Williams.
       };
       img.onerror = function() {
 				if (console) {
-        	console.log('Notificon: image not found (' + favicon + ')');
+          console.log('Notificon: image not found (' + favicon + ')');
 				}
       };
   };
