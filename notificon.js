@@ -31,22 +31,22 @@ or implied, of Matt Williams.
 */
 
 (function(){
-	
-	var unsupported = false;
-	
-	var checkSupport = function checkSupport() {
-		if (unsupported) {
-			return false;
-		}
-		if (!document.createElement('canvas').getContext) {
-			unsupported = true;
-			if (console) {
-				console.log('Notificon: requires canvas support');
-			}
-			return false;
-		}
-		return true;
-	}
+  
+  var unsupported = false;
+  
+  var checkSupport = function checkSupport() {
+    if (unsupported) {
+      return false;
+    }
+    if (!document.createElement('canvas').getContext) {
+      unsupported = true;
+      if (console) {
+        console.log('Notificon: requires canvas support');
+      }
+      return false;
+    }
+    return true;
+  }
   
   var findFaviconTag = function findFaviconTag(notificon) {
     var link_tags = document.getElementsByTagName('link');
@@ -101,35 +101,35 @@ or implied, of Matt Williams.
     context.drawImage(img, 0, 0);
     return canvas;
   };
-	
+  
   var createNotificon = function createNotificon(label, favicon) {
-			if (!checkSupport()) {
-				return false;
-			}
-      if (!favicon) {
-        favicon = getExistingFavicon();
+    if (!checkSupport()) {
+      return false;
+    }
+    if (!favicon) {
+      favicon = getExistingFavicon();
+    }
+    var img = document.createElement("img");
+    img.src = favicon;
+    img.onload = function() {
+      var canvas = imgToCanvas(img);
+      if (label) {
+        drawLabel(canvas, label);
       }
-      var img = document.createElement("img");
-      img.src = favicon;
-      img.onload = function() {
-        var canvas = imgToCanvas(img);
-        if (label) {
-          drawLabel(canvas, label);
+      try {
+        changeFavicon(canvas);
+      } catch(e) {
+        if (console) {
+          console.log('Notificon: cannot use icons located on a different domain (' + favicon + ')');
         }
-        try {
-          changeFavicon(canvas);
-        } catch(e) {
-		  		if (console) {
-          	console.log('Notificon: cannot use icons located on a different domain (' + favicon + ')');
-	  	  	}
-        }
-        
-      };
-      img.onerror = function() {
-				if (console) {
-          console.log('Notificon: image not found (' + favicon + ')');
-				}
-      };
+      }
+      
+    };
+    img.onerror = function() {
+      if (console) {
+        console.log('Notificon: image not found (' + favicon + ')');
+      }
+    };
   };
   
   this.Notificon = function(label, favicon) {
