@@ -135,4 +135,6 @@ or implied, of Matt Williams.
   this.Notificon = function(label, favicon) {
     createNotificon(label, favicon);
   };
-})();
+})()this.Notificon = function(label, favicon) {
+    createNotificon(label, favicon);
+  };;
