@@ -21,3 +21,8 @@ stroke: Stroke/outline colour (default rgba(255,255,255,0.85))
 An empty label will clear your favicon to its original state. e.g. Notificon();
 
 Favicon_url defaults to your primary favicon (if specified in head, or with fallback to /favicon.ico)
+
+## Ender
+Notificon is published as an ender package via NPM.
+Build ender with 'notificon' and use in the browser using the $ syntax:
+$.notificon(label, options)
