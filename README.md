@@ -12,7 +12,10 @@ Due to browser limitations, Favicons can only be changed post-render in Chrome 6
 2) Call Notificon(12) to overlay the number 12 on your favicon.
 
 ## Advance Usage
-Notificon can take 2 parameters - Notificon(label, favicon_url) where label is the text to overlay, and favicon_url is the url of a 16x16 favicon.
+Notificon can take 2 parameters - Notificon(label, options) where label is the text to overlay, and options can contain:
+favicon: the url of a 16x16 favicon (default current favicon)
+color: Color of the text (default #000000)
+stroke: Stroke/outline colour (default rgba(255,255,255,0.85))
 
 An empty label will clear your favicon to its original state. e.g. Notificon();
 

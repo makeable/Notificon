@@ -31,9 +31,9 @@ or implied, of Matt Williams.
 */
 
 (function(){
-  
+
   var unsupported = false;
-  
+
   var checkSupport = function checkSupport() {
     if (unsupported) {
       return false;
@@ -46,8 +46,25 @@ or implied, of Matt Williams.
       return false;
     }
     return true;
-  }
-  
+  };
+
+  var mergeDefaultOptions = function mergeDefaultOptions(options) {
+    if (!options) {
+      options = {};
+    }
+    var defaults = {
+      color: "#000000",
+      stroke: "rgba(255,255,255,0.85)",
+      favicon: getExistingFavicon()
+    };
+    for (var key in defaults) {
+      if (!options[key]) {
+        options[key] = defaults[key];
+      }
+    }
+    return options;
+  };
+
   var findFaviconTag = function findFaviconTag(notificon) {
     var link_tags = document.getElementsByTagName('link');
     for (var i=0; i < link_tags.length; i++) {
@@ -59,12 +76,12 @@ or implied, of Matt Williams.
     }
     return false;
   };
-  
+
   var getExistingFavicon = function getExistingFavicon() {
     var favicon = findFaviconTag();
     return favicon ? favicon.getAttribute('href') : '/favicon.ico';
   };
-  
+
   var removeNotificon = function removeNotificon() {
     var notificon = findFaviconTag(true);
     if (notificon) {
@@ -72,7 +89,7 @@ or implied, of Matt Williams.
       removeNotificon();
     }
   };
-  
+
   var changeFavicon = function changeFavicon(canvas) {
     var link = document.createElement('link');
     link.type = 'image/x-icon';
@@ -81,13 +98,14 @@ or implied, of Matt Williams.
     removeNotificon();
     document.getElementsByTagName('head')[0].appendChild(link);
   };
-  
-  var drawLabel = function drawLabel(canvas, label) {
+
+  var drawLabel = function drawLabel(canvas, label, color, stroke) {
     var context = canvas.getContext("2d");
     context.font = "10px monospace";
+    context.fillStyle = color;
     context.textAlign = 'right';
     context.textBaseline = "top";
-    context.strokeStyle = 'rgba(255,255,255,0.85)';
+    context.strokeStyle = stroke;
     context.lineWidth = 4;
     context.strokeText(label,16,6);
     context.fillText(label,16,6);
@@ -101,38 +119,41 @@ or implied, of Matt Williams.
     context.drawImage(img, 0, 0);
     return canvas;
   };
-  
-  var createNotificon = function createNotificon(label, favicon) {
+
+  var createNotificon = function createNotificon(label,myOptions) {
     if (!checkSupport()) {
       return false;
     }
-    if (!favicon) {
-      favicon = getExistingFavicon();
-    }
+
+    var options = mergeDefaultOptions(myOptions);
+
     var img = document.createElement("img");
-    img.src = favicon;
+    img.src = options.favicon;
     img.onload = function() {
       var canvas = imgToCanvas(img);
       if (label) {
-        drawLabel(canvas, label);
+        drawLabel(canvas, label, options.color, options.stroke);
       }
       try {
         changeFavicon(canvas);
+        return true;
       } catch(e) {
         if (console) {
           console.log('Notificon: cannot use icons located on a different domain (' + favicon + ')');
+          return false;
         }
       }
-      
     };
     img.onerror = function() {
       if (console) {
-        console.log('Notificon: image not found (' + favicon + ')');
+        console.log('Notificon: image not found (' + options.favicon + ')');
+        return false;
       }
     };
+    return true;
   };
-  
-  this.Notificon = function(label, favicon) {
-    createNotificon(label, favicon);
+
+  this.Notificon = function(label, options) {
+    createNotificon(label, options);
   };
 })();
