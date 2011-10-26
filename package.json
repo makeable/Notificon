@@ -7,8 +7,8 @@
   "authors": ["Matthew Williams <matt@makeable.co.uk>"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/makeable/Notificon.git",
+    "url": "https://github.com/makeable/Notificon.git"
   },
   "main": "./notificon.js",
-  "ender": "./exports/ender.js",
+  "ender": "./exports/ender.js"
 }
