@@ -90,11 +90,11 @@ or implied, of Matt Williams.
     }
   };
 
-  var changeFavicon = function changeFavicon(canvas) {
+  var changeFavicon = function changeFavicon(uri) {
     var link = document.createElement('link');
     link.type = 'image/x-icon';
     link.rel = 'icon notificon';
-    link.href = canvas.toDataURL("image/png");
+    link.href = uri;
     removeNotificon();
     document.getElementsByTagName('head')[0].appendChild(link);
   };
@@ -126,6 +126,10 @@ or implied, of Matt Williams.
     }
 
     var options = mergeDefaultOptions(myOptions);
+    
+    if (!label.length) {
+      return changeFavicon(options.favicon);
+    }
 
     var img = document.createElement("img");
     img.src = options.favicon;
@@ -135,8 +139,7 @@ or implied, of Matt Williams.
         drawLabel(canvas, label, options.color, options.stroke);
       }
       try {
-        changeFavicon(canvas);
-        return true;
+        return changeFavicon(canvas.toDataURL("image/png"));
       } catch(e) {
         if (console) {
           console.log('Notificon: cannot use icons located on a different domain (' + favicon + ')');
