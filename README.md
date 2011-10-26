@@ -6,6 +6,7 @@ Instead of requiring a number of favicons be created and served up to the client
 
 ## Browser Support
 Due to browser limitations, Favicons can only be changed post-render in Chrome 6+ and Firefox 2+ and Opera. Other browsers are currently unsupported.
+Favicons must be served from the same domain due to browser security restrictions!
 
 ## Basic Usage
 1) Include the notificon.js in your page
