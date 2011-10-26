@@ -1,5 +1,5 @@
 !function($) {
-  var notificon = require('../notificon.js');
+  var notificon = require('notificon');
   $.ender({
     notificon: notificon
   });

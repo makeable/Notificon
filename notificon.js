@@ -161,7 +161,7 @@ or implied, of Matt Williams.
   };
 
   if (typeof exports !== 'undefined') {
-    exports = Notificon;
+    module.exports = Notificon;
   } else {
     this.Notificon = Notificon;
   }
