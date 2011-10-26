@@ -1,7 +1,7 @@
 {
   "name": "notificon",
   "description": "favicon notifications and alerts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": ["ender", "notificon"],
   "homepage": "https://github.com/makeable/Notificon",
   "authors": ["Matthew Williams <matt@makeable.co.uk>"],
