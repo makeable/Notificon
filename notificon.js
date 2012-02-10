@@ -138,7 +138,8 @@ or implied, of Matt Williams.
     }
 
     var options = mergeDefaultOptions(myOptions);
-    
+
+    label = "" + label;
     if (!label.length) {
       return changeFavicon(options.favicon);
     }
