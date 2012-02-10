@@ -167,9 +167,13 @@ or implied, of Matt Williams.
     };
     return true;
   };
-  
+
   var Notificon = function(label, options) {
     createNotificon(label, options);
+  };
+
+  Notificon.reset = function reset() {
+    removeNotificon();
   };
 
   if (typeof exports !== 'undefined') {
