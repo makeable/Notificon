@@ -53,8 +53,12 @@ or implied, of Matt Williams.
       options = {};
     }
     var defaults = {
+      font: "10px monospace",
       color: "#000000",
       stroke: "rgba(255,255,255,0.85)",
+      align: 'right',
+      valign: 'bottom',
+      width: 4,
       favicon: getExistingFavicon()
     };
     for (var key in defaults) {
@@ -99,18 +103,26 @@ or implied, of Matt Williams.
     document.getElementsByTagName('head')[0].appendChild(link);
   };
 
-  var drawLabel = function drawLabel(canvas, label, color, stroke) {
-    var context = canvas.getContext("2d");
-    context.font = "10px monospace";
-    context.fillStyle = color;
-    context.textAlign = 'right';
-    context.textBaseline = "top";
-    context.strokeStyle = stroke;
-    context.lineWidth = 4;
-    context.strokeText(label,16,6);
-    context.fillText(label,16,6);
+  var getCoords = function getCoords(options) {
+    return {
+      x: options.align.toLowerCase() === 'left' ? 0 : 16,
+      y: options.valign.toLowerCase() === 'top' ? 0 : 18
+    };
   };
-  
+
+  var drawLabel = function drawLabel(canvas, label, options) {
+    var context = canvas.getContext("2d");
+    var coords = getCoords(options);
+    context.font = options.font;
+    context.fillStyle = options.color;
+    context.textAlign = options.align;
+    context.textBaseline = options.valign;
+    context.strokeStyle = options.stroke;
+    context.lineWidth = options.width;
+    context.strokeText(label, coords.x, coords.y);
+    context.fillText(label, coords.x, coords.y);
+  };
+
   var imgToCanvas = function imgToCanvas(img) {
     var canvas = document.createElement("canvas");
     canvas.width = img.width;
@@ -136,7 +148,7 @@ or implied, of Matt Williams.
     img.onload = function() {
       var canvas = imgToCanvas(img);
       if (label) {
-        drawLabel(canvas, label, options.color, options.stroke);
+        drawLabel(canvas, label, options);
       }
       try {
         return changeFavicon(canvas.toDataURL("image/png"));
