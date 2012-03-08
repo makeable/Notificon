@@ -146,6 +146,7 @@ or implied, of Matt Williams.
 
     var img = document.createElement("img");
     img.src = options.favicon;
+    img.crossOrigin = 'anonymous';
     img.onload = function() {
       var canvas = imgToCanvas(img);
       if (label) {
