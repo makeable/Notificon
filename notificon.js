@@ -82,7 +82,7 @@ or implied, of Matt Williams.
   };
 
   var getExistingFavicon = function getExistingFavicon() {
-    var favicon = findFaviconTag();
+    var favicon = findFaviconTag(false);
     return favicon ? favicon.getAttribute('href') : '/favicon.ico';
   };
 
@@ -137,6 +137,8 @@ or implied, of Matt Williams.
       return false;
     }
 
+    removeNotificon();
+
     var options = mergeDefaultOptions(myOptions);
 
     label = "" + label;
@@ -157,15 +159,15 @@ or implied, of Matt Williams.
       } catch(e) {
         if (console) {
           console.log('Notificon: cannot use icons located on a different domain (' + favicon + ')');
-          return false;
         }
+        return false;
       }
     };
     img.onerror = function() {
       if (console) {
         console.log('Notificon: image not found (' + options.favicon + ')');
-        return false;
       }
+      return false;
     };
     return true;
   };
