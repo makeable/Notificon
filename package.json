@@ -5,6 +5,7 @@
   "keywords": ["ender", "notificon"],
   "homepage": "https://github.com/makeable/Notificon",
   "authors": ["Matthew Williams <matt@makeable.co.uk>"],
+  "license": "BSD-2-Clause",
   "repository": {
     "type": "git",
     "url": "https://github.com/makeable/Notificon.git"
