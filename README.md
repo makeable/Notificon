@@ -10,19 +10,21 @@ Favicons must be served from the same domain due to browser security restriction
 
 ## Basic Usage
 1) Include the notificon.js in your page
-2) Call Notificon(12) to overlay the number 12 on your favicon.
+2) Call `Notificon(12)` to overlay the number `12` on your favicon.
 
 ## Advance Usage
-Notificon can take 2 parameters - Notificon(label, options) where label is the text to overlay, and options can contain:
-favicon: the url of a 16x16 favicon (default current favicon)
-color: Color of the text (default #000000)
-stroke: Stroke/outline colour (default rgba(255,255,255,0.85))
+Notificon can take 2 parameters - `Notificon(label, options)`
+- `label`: text to overlay
+- `options`: 
+	- favicon: the url of a 16x16 favicon (default current favicon)
+	- color: Color of the text (default #000000)
+	- stroke: Stroke/outline colour (default rgba(255,255,255,0.85))
 
-An empty label will clear your favicon to its original state. e.g. Notificon();
+An empty label will clear your favicon to its original state. e.g. `Notificon();`
 
-Favicon_url defaults to your primary favicon (if specified in head, or with fallback to /favicon.ico)
+`favicon_url` defaults to your primary favicon (if specified in head, or with fallback to `/favicon.ico`)
 
 ## Ender
 Notificon is published as an ender package via NPM.
-Build ender with 'notificon' and use in the browser using the $ syntax:
-$.notificon(label, options)
+Build ender with 'notificon' and use in the browser using the `$` syntax:
+`$.notificon(label, options)`
