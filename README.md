@@ -2,7 +2,7 @@
 Notificon is a BSD licensed javascript class for providing client-side favicon notifications.
 Instead of requiring a number of favicons be created and served up to the client, you can specify a label and a favicon (default being the current favicon) and it will generate a favicon notification.
 
-[Example is available here](http://makeable.github.com/Notificon/)
+[Example is available here](https://makeable.github.io/Notificon/)
 
 ## Browser Support
 Due to browser limitations, Favicons can only be changed post-render in Chrome 6+ and Firefox 2+ and Opera. Other browsers are currently unsupported.
